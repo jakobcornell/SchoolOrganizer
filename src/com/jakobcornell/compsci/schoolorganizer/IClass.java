@@ -5,26 +5,32 @@ import java.util.Date;
 public interface IClass {
    
    /*
-    * Returns whether date is within the class's date range
+    * Returns whether the class met on date
     */
    public boolean contains(Date date);
    
    /*
-    * Uses an input date, student, and boolean to modify the roll
-    * Throws EnrollmentException when date is not within the class's date range
+    * Adds a date when the class met
     */
-   public void setAttendance(Date date, IStudent student, boolean wasPresent) throws EnrollmentException;
+   public void addSession(Date session);
+   public void removeSession(Date session);
+   
+   /*
+    * Gets the set of dates when the class met
+    */
+   public Set<Date> getSessions();
+   
+   /*
+    * Uses an input date, student, and boolean to modify the roll
+    * Throws EnrollmentException when the class did not meet at date
+    */
+   public void setAttendance(Date session, IStudent student, boolean wasPresent) throws EnrollmentException;
    
    /*
     * Returns whether student was present on date
-    * Throws EnrollmentException when date is not within the class's date range
+    * Throws EnrollmentException when the class did not meet at date
     */
-   public boolean wasPresent(Date date, IStudent student) throws EnrollmentException;
+   public boolean wasPresent(Date session, IStudent student) throws EnrollmentException;
    
    public String getName();
-   
-   public Date getStartDate();
-   
-   public Date getEndDate();
-   
 }
