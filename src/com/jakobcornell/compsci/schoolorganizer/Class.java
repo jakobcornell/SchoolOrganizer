@@ -8,25 +8,48 @@ import java.util.HashSet;
 
 public class Class implements IClass {
    private final String name;
-   private final Date start, end;
+   private Set<Date> sessions;
    private Map<Date, Set<IStudent>> attendance; // used to associate a date with a set of students (who were present)
 
-   public Class(String name, Date start, Date end) {
+   public Class(String name) {
       this.name = name;
-      this.start = start;
-      this.end = end;
+      sessions = new HashSet<Date>();
       attendance = new HashMap<Date, Set<IStudent>>();
+   }
+   
+   /*
+    * Returns a string to use to represent the class (for the interface)
+    */
+   public String toString() {
+      return name;
    }
    
    /*
     * Returns whether date is within the class's date range
     */
    public boolean contains(Date date) {
-      if (date.after(start) && date.before(end))
-         return true;
-      else {
-         return false;
-      }
+      return sessions.contains(date);
+   }
+   
+   /*
+    * Adds a date when the class met
+    */
+   public void addSession(Date session) {
+      sessions.add(session);
+   }
+   
+   /*
+    * Removes a date when the class met
+    */
+   public void removeSession(Date session) {
+      sessions.remove(session);
+   }
+   
+   /*
+    * Gets the set of dates when the class met
+    */
+   public Set<Date> getSessions() {
+      return sessions;
    }
    
    /*
@@ -59,13 +82,5 @@ public class Class implements IClass {
    
    public String getName() {
       return name;
-   }
-   
-   public Date getStartDate() {
-      return start;
-   }
-   
-   public Date getEndDate() {
-      return end;
    }
 }

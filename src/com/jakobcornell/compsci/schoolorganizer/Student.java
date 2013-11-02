@@ -2,6 +2,7 @@ package com.jakobcornell.compsci.schoolorganizer;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Student implements IStudent {
    private String name;
@@ -12,6 +13,13 @@ public class Student implements IStudent {
       this.name = name;
       schedules = new HashMap<Integer, IClass[]>();
       grades = new HashMap<IClass, Grade>();
+   }
+   
+   /*
+    * Returns a string to use to represent the student (for the interface)
+    */
+   public String toString() {
+      return name;
    }
    
    public void setName(String newName) {
@@ -106,5 +114,12 @@ public class Student implements IStudent {
       else {
          throw new EnrollmentException();
       }
+   }
+   
+   /*
+    * Returns a set of the integers corresponding to the semesters in which the student is enrolled in classes
+    */
+   public Set<Integer> getEnrolledSemesters() {
+      return schedules.keySet();
    }
 }

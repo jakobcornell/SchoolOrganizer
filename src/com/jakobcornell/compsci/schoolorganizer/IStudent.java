@@ -1,5 +1,7 @@
 package com.jakobcornell.compsci.schoolorganizer;
 
+import java.util.Set;
+
 public interface IStudent {
    public void setName(String newName);
    
@@ -39,5 +41,10 @@ public interface IStudent {
     * Throws EnrollmentException if the student is not enrolled in cl
     */
    public Grade getGrade(IClass cl) throws EnrollmentException;
+   
+   /*
+    * Returns the integers corresponding to the semesters in which the student is enrolled in a class
+    */
+   public Set<Integer> getEnrolledSemesters();
    
 }
